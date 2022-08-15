@@ -19,12 +19,32 @@ micronaut:
               secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
 datasources:
   default:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:toyproject}
     driverClassName: org.postgresql.Driver
     db-type: postgresql
-    schema-generate: CREATE_DROP
+    schema-generate: none
     dialect: POSTGRES
+    username: ${PG_USERNAME:postgres}
+    password: ${PG_PASSWORD:secret} #secret
+flyway:
+  datasources:
+    default:
+      url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:toyproject}
+      locations: classpath:db/migration
+      enabled: true
+      user: ${PG_USERNAME:postgres}
+      password: ${PG_PASSWORD:secret} #secret
+      # schemas: toyproject
+      # default-schema: toyproject
 netty:
   default:
     allocator:
       max-order: 3
-jpa.default.properties.hibernate.hbm2ddl.auto: none
+jpa:
+  default:
+    packages-to-scan:
+      - "com.hassialis.philip"
+    properties:
+      hibernate:
+        hbm2ddl.auto: none
+        show_sql: true
