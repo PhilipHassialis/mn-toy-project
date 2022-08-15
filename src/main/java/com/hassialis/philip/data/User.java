@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,13 +28,15 @@ public class User {
   @NotNull
   private String password;
 
+  @ManyToOne
+  @JoinColumn(name = "userrole")
   @NotNull
-  private String role;
+  private UserRole userRole;
 
-  public User(String username, String password, String role) {
+  public User(String username, String password, UserRole userRole) {
     this.username = username;
     this.password = password;
-    this.role = role;
+    this.userRole = userRole;
   }
 
   public Long getId() {
@@ -47,8 +51,8 @@ public class User {
     return password;
   }
 
-  public String getRole() {
-    return role;
+  public UserRole getUserRole() {
+    return userRole;
   }
 
 }

@@ -32,6 +32,7 @@ flyway:
       url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:toyproject}
       locations: classpath:db/migration
       enabled: true
+      clean-schema: true
       user: ${PG_USERNAME:postgres}
       password: ${PG_PASSWORD:secret} #secret
       # schemas: toyproject
