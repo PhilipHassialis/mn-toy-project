@@ -11,6 +11,14 @@ micronaut:
         mapping: /swagger-ui/**
   security:
     authentication: bearer
+    intercept-url-map:
+      - pattern: /swagger-ui/**
+        httpMethod: GET
+        access:
+          - isAnonymous()
+      - pattern: /swagger/**
+        access:
+          - isAnonymous()
     token:
       jwt:
         signatures:
