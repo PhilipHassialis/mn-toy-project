@@ -121,6 +121,10 @@
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>io.micronaut.reactor</groupId>
+      <artifactId>micronaut-reactor</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
