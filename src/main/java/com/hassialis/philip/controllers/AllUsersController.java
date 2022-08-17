@@ -8,10 +8,9 @@ import com.hassialis.philip.data.UsersRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.security.annotation.Secured;
-import io.micronaut.security.rules.SecurityRule;
 
 @Controller("/users")
-@Secured(SecurityRule.IS_ANONYMOUS)
+@Secured("ADMIN")
 public class AllUsersController {
 
   private final UsersRepository usersRepository;
