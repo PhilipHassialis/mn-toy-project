@@ -5,21 +5,24 @@ import java.util.List;
 import com.hassialis.philip.data.entities.User;
 import com.hassialis.philip.data.repositories.UsersRepository;
 
+import com.hassialis.philip.dtos.UserDTO;
+import com.hassialis.philip.mappers.UserDTOToUserMapper;
+import com.hassialis.philip.mappers.UserToUserDTOMapper;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
+import lombok.RequiredArgsConstructor;
 
 @Controller("/users")
 @Secured("ADMIN")
+@RequiredArgsConstructor
 public class UsersController {
 
   private final UsersRepository usersRepository;
-
-  public UsersController(UsersRepository usersRepository) {
-    this.usersRepository = usersRepository;
-  }
+  private final UserDTOToUserMapper userDTOToUserMapper;
+  private final UserToUserDTOMapper userToUserDTOMapper;
 
   @Get("/")
   public List<User> getAllUsers() {
@@ -27,7 +30,8 @@ public class UsersController {
   }
 
   @Post("/")
-  public User createUser(@Body User user) {
-    return usersRepository.save(user);
+  public UserDTO createUser(@Body UserDTO user) {
+    return userToUserDTOMapper.apply(usersRepository.save(userDTOToUserMapper.apply(user)));
+//    return usersRepository.save(user);
   }
 }
