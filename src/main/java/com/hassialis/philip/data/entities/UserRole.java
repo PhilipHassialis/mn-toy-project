@@ -29,4 +29,8 @@ public class UserRole {
     return userRole;
   }
 
+  public UserRole(String userRole) {
+    this.userRole = userRole;
+  }
+
 }
