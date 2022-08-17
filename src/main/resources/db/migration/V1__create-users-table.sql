@@ -12,3 +12,25 @@ create table users
   userrole varchar(255) not null,
   constraint role_fk foreign key (userrole) references userroles(userrole)
 );
+
+insert into userroles
+  (userrole, roledescription)
+values
+  ('ADMIN', 'Administrator');
+insert into userroles
+  (userrole, roledescription)
+values
+  ('MANAGER', 'Project Manager');
+insert into userroles
+  (userrole, roledescription)
+values
+  ('TESTER', 'Test User');
+insert into userroles
+  (userrole, roledescription)
+values
+  ('DEV', 'Developer');
+
+insert into users
+  (username, password, userrole)
+values
+  ('Admin', 'secret', 'ADMIN');
