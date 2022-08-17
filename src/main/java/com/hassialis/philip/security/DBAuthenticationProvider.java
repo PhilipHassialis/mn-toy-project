@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.reactivestreams.Publisher;
 
-import com.hassialis.philip.data.User;
-import com.hassialis.philip.data.UsersRepository;
+import com.hassialis.philip.data.entities.User;
+import com.hassialis.philip.data.repositories.UsersRepository;
 
 import io.micronaut.http.HttpRequest;
 import io.micronaut.security.authentication.AuthenticationException;
@@ -39,5 +39,4 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
       }
     });
   }
-
 }

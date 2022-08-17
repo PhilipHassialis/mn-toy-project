@@ -1,4 +1,4 @@
-package com.hassialis.philip.data;
+package com.hassialis.philip.data.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
