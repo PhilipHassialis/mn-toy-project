@@ -7,16 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "projects")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Project {
 
   @Id
@@ -31,8 +37,10 @@ public class Project {
   @Column(name = "projectdescription")
   private String projectDescription;
 
-  @Column(name = "projectstatus")
-  private String projectStatus;
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "projectstatus")
+  private ProjectStatus projectStatus;
 
   @Column(name = "projectstartdate")
   private Date projectStartDate;
@@ -40,28 +48,13 @@ public class Project {
   @Column(name = "projectenddate")
   private Date projectEndDate;
 
-  public Long getId() {
-    return id;
-  }
-
-  public String getProjectName() {
-    return projectName;
-  }
-
-  public String getProjectDescription() {
-    return projectDescription;
-  }
-
-  public String getProjectStatus() {
-    return projectStatus;
-  }
-
-  public Date getProjectStartDate() {
-    return projectStartDate;
-  }
-
-  public Date getProjectEndDate() {
-    return projectEndDate;
+  public Project(@NotNull String projectName, @NotNull String projectDescription, @NotNull ProjectStatus projectStatus,
+      Date projectStartDate, Date projectEndDate) {
+    this.projectName = projectName;
+    this.projectDescription = projectDescription;
+    this.projectStatus = projectStatus;
+    this.projectStartDate = projectStartDate;
+    this.projectEndDate = projectEndDate;
   }
 
 }
