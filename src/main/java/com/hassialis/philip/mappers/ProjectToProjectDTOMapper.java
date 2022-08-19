@@ -5,6 +5,9 @@ import java.util.function.Function;
 import com.hassialis.philip.data.entities.Project;
 import com.hassialis.philip.dtos.ProjectDTO;
 
+import jakarta.inject.Singleton;
+
+@Singleton
 public class ProjectToProjectDTOMapper implements Function<Project, ProjectDTO> {
 
   @Override

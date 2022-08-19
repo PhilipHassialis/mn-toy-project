@@ -34,3 +34,8 @@ insert into users
   (username, password, userrole)
 values
   ('Admin', 'secret', 'ADMIN');
+
+insert into users
+  (username, password, userrole)
+values
+  ('Manager', 'secret', 'MANAGER');  

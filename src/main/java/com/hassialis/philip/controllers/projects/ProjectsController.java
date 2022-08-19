@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.hassialis.philip.data.entities.Project;
 import com.hassialis.philip.data.repositories.ProjectsRepository;
+import com.hassialis.philip.dtos.ProjectDTO;
+import com.hassialis.philip.mappers.ProjectDTOToProjectMapper;
+import com.hassialis.philip.mappers.ProjectToProjectDTOMapper;
 
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -11,16 +14,16 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
+import lombok.RequiredArgsConstructor;
 
 @Controller("/projects")
 @Secured(SecurityRule.IS_AUTHENTICATED)
+@RequiredArgsConstructor
 public class ProjectsController {
 
   private final ProjectsRepository projectsRepository;
-
-  public ProjectsController(ProjectsRepository projectsRepository) {
-    this.projectsRepository = projectsRepository;
-  }
+  private final ProjectDTOToProjectMapper projectDTOToProjectMapper;
+  private final ProjectToProjectDTOMapper projectToProjectDTOMapper;
 
   @Get("/")
   public List<Project> getAllProjects() {
@@ -29,8 +32,8 @@ public class ProjectsController {
 
   @Post("/")
   @Secured({ "MANAGER" })
-  public Project createProject(@Body Project project) {
-    return projectsRepository.save(project);
+  public ProjectDTO createProject(@Body ProjectDTO projectDTO) {
+    return projectToProjectDTOMapper.apply(projectsRepository.save(projectDTOToProjectMapper.apply(projectDTO)));
   }
 
 }
