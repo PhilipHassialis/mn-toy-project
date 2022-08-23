@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,6 +53,7 @@ public class Project {
   private Date projectEndDate;
 
   @OneToMany(mappedBy = "project")
+  @JsonManagedReference
   private List<Task> tasks;
 
   public Project(@NotNull String projectName, @NotNull String projectDescription, @NotNull ProjectStatus projectStatus,

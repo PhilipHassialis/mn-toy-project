@@ -16,6 +16,8 @@ import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
 import lombok.RequiredArgsConstructor;
 
+import javax.transaction.Transactional;
+
 @Controller("/projects")
 @Secured(SecurityRule.IS_AUTHENTICATED)
 @RequiredArgsConstructor

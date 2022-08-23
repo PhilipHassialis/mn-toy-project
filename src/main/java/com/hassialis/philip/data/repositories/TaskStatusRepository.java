@@ -6,7 +6,7 @@ import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 
 @Repository
-public interface TaskStatusRepository extends CrudRepository<TaskStatus, Long> {
+public interface TaskStatusRepository extends CrudRepository<TaskStatus, String> {
 
   TaskStatus findByTaskStatus(String taskStatus);
 }
