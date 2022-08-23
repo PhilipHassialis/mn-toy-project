@@ -8,4 +8,5 @@ import io.micronaut.data.repository.CrudRepository;
 @Repository
 public interface TaskStatusRepository extends CrudRepository<TaskStatus, Long> {
 
+  TaskStatus findByTaskStatus(String taskStatus);
 }
