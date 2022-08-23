@@ -10,12 +10,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
 @Getter
 @Setter
+@Entity
+@AllArgsConstructor
 public class User {
 
   @Id
@@ -28,11 +28,11 @@ public class User {
   @NotNull
   private String password;
 
-//  @JsonProperty("userRole")
-//  @Column(name = "userrole", insertable = true, updatable = true)
-//  private String userroleStr;
+  // @JsonProperty("userRole")
+  // @Column(name = "userrole", insertable = true, updatable = true)
+  // private String userroleStr;
 
-//  @JsonIgnore
+  // @JsonIgnore
   @ManyToOne
   @JoinColumn(name = "userrole")
   @NotNull
