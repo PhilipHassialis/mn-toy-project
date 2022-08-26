@@ -2,6 +2,7 @@ package com.hassialis.philip.dtos;
 
 import java.sql.Date;
 
+import io.micronaut.core.annotation.Introspected;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Introspected
 public class ProjectDTO {
 
   private Long id;
